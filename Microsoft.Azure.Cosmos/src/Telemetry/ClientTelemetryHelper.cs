@@ -136,13 +136,13 @@ namespace Microsoft.Azure.Cosmos.Telemetry
                 float cpuValue = cpuLoad.Value;
                 if (!float.IsNaN(cpuValue))
                 {
-                    cpuHistogram.RecordValue((long)cpuValue);
+                    cpuHistogram.RecordValue((long)(cpuValue * ClientTelemetryOptions.HistogramPrecisionFactor));
                 }
 
             }
 
             SystemInfo cpuInfoPayload = new SystemInfo(ClientTelemetryOptions.CpuName, ClientTelemetryOptions.CpuUnit);
-            cpuInfoPayload.SetAggregators(cpuHistogram);
+            cpuInfoPayload.SetAggregators(cpuHistogram, ClientTelemetryOptions.HistogramPrecisionFactor);
 
             return cpuInfoPayload;
         }
@@ -161,7 +161,7 @@ namespace Microsoft.Azure.Cosmos.Telemetry
             {
                 OperationInfo payloadForLatency = entry.Key;
                 payloadForLatency.MetricInfo = new MetricInfo(ClientTelemetryOptions.RequestLatencyName, ClientTelemetryOptions.RequestLatencyUnit);
-                payloadForLatency.SetAggregators(entry.Value.latency, ClientTelemetryOptions.HistogramPrecisionFactor);
+                payloadForLatency.SetAggregators(entry.Value.latency, ClientTelemetryOptions.TicksToMsFactor);
 
                 payloadWithMetricInformation.Add(payloadForLatency);
 
