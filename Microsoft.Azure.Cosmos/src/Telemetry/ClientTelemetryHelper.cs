@@ -92,7 +92,7 @@ namespace Microsoft.Azure.Cosmos.Telemetry
         /// <returns>ReportPayload</returns>
         internal static SystemInfo RecordMemoryUsage(CpuAndMemoryUsageRecorder systemUsageRecorder)
         {
-            LongConcurrentHistogram memoryHistogram = new LongConcurrentHistogram(1,
+            LongConcurrentHistogram memoryHistogram = new LongConcurrentHistogram(ClientTelemetryOptions.MemoryMin,
                                                             ClientTelemetryOptions.MemoryMax,
                                                             ClientTelemetryOptions.MemoryPrecision);
 
@@ -104,13 +104,12 @@ namespace Microsoft.Azure.Cosmos.Telemetry
 
             foreach (MemoryLoad memoryLoad in memoryLoadHistory.MemoryLoad)
             {
-                long memoryLoadInMb = memoryLoad.Value / ClientTelemetryOptions.BytesToMb;
-                memoryHistogram.RecordValue(memoryLoadInMb);
+                memoryHistogram.RecordValue(memoryLoad.Value);
             }
 
             SystemInfo memoryInfoPayload = new SystemInfo(ClientTelemetryOptions.MemoryName, ClientTelemetryOptions.MemoryUnit);
-            memoryInfoPayload.SetAggregators(memoryHistogram);
-
+            memoryInfoPayload.SetAggregators(memoryHistogram, ClientTelemetryOptions.BytesToMb);
+           
             return memoryInfoPayload;
         }
 
@@ -121,7 +120,7 @@ namespace Microsoft.Azure.Cosmos.Telemetry
         /// <returns>ReportPayload</returns>
         internal static SystemInfo RecordCpuUsage(CpuAndMemoryUsageRecorder systemUsageRecorder)
         {
-            LongConcurrentHistogram cpuHistogram = new LongConcurrentHistogram(1,
+            LongConcurrentHistogram cpuHistogram = new LongConcurrentHistogram(ClientTelemetryOptions.CpuMin,
                                                         ClientTelemetryOptions.CpuMax,
                                                         ClientTelemetryOptions.CpuPrecision);
 
