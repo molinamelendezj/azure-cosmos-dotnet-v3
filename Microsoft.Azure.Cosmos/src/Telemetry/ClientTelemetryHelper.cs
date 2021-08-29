@@ -108,7 +108,7 @@ namespace Microsoft.Azure.Cosmos.Telemetry
             }
 
             SystemInfo memoryInfoPayload = new SystemInfo(ClientTelemetryOptions.MemoryName, ClientTelemetryOptions.MemoryUnit);
-            memoryInfoPayload.SetAggregators(memoryHistogram, ClientTelemetryOptions.BytesToMb);
+            memoryInfoPayload.SetAggregators(memoryHistogram, ClientTelemetryOptions.KbToMb);
            
             return memoryInfoPayload;
         }
@@ -137,7 +137,6 @@ namespace Microsoft.Azure.Cosmos.Telemetry
                 {
                     cpuHistogram.RecordValue((long)(cpuValue * ClientTelemetryOptions.HistogramPrecisionFactor));
                 }
-
             }
 
             SystemInfo cpuInfoPayload = new SystemInfo(ClientTelemetryOptions.CpuName, ClientTelemetryOptions.CpuUnit);
