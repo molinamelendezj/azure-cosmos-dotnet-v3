@@ -1,0 +1,28 @@
+{
+    "EventIdHash": 963884055,
+    "Timestamp": "2021-08-25 16:31:46.881-04:00",
+    "Level": "Information",
+    "Message": "EDGE 2: Account lookup response sent for account { AccountName: \"17.3\", Active: Y }",
+    "MessageTemplate": "EDGE 2: Account lookup response sent for account {@account}",
+    "Properties": {
+        "account": {
+            "AccountName": "17.3",
+            "Active": "Y"
+        },
+        "TimeStampUtc": "2021-08-25T20:26:37.4617775+00:00",
+        "MachineName": "J764878-W10",
+        "EnvironmentUserName": "CORPORATE\\J764878",
+        "ClientIp": "::1",
+        "ClientAgent": [
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36 Edg/92.0.902.78"
+        ],
+        "_hubId": "b9ea286e-40c5-440b-b989-0528efaa297a",
+        "ActionId": "2f14d24a-a81a-4ac1-a5cb-edc54c5bc4fb",
+        "ActionName": "enrollment.web.Controllers.AccountController.Get (enrollment.web)",
+        "RequestId": "0HMB80SBPL0T8:00000005",
+        "RequestPath": "/account",
+        "ConnectionId": "0HMB80SBPL0T8",
+        "ServiceName": "enrollment-core"
+    },
+    "id": "62cd3644-d396-cca4-6e43-9bce1eee279c"
+}

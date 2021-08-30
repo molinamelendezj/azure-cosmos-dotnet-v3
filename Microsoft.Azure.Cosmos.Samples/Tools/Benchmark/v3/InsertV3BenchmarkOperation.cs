@@ -62,7 +62,7 @@ namespace CosmosBenchmark
 
         public Task PrepareAsync()
         {
-            string newPartitionKey = Guid.NewGuid().ToString();
+            string newPartitionKey = Guid.NewGuid().ToString(); //"08302021"
             this.sampleJObject["id"] = Guid.NewGuid().ToString();
             this.sampleJObject[this.partitionKeyPath] = newPartitionKey;
 

@@ -168,8 +168,8 @@ namespace CosmosBenchmark
                 ApplicationName = BenchmarkConfig.UserAgentSuffix,
                 MaxRetryAttemptsOnRateLimitedRequests = 0,
                 MaxRequestsPerTcpConnection = this.MaxRequestsPerTcpConnection,
-                MaxTcpConnectionsPerEndpoint = this.MaxTcpConnectionsPerEndpoint,
-                EnableClientTelemetry = this.EnableTelemetry
+                MaxTcpConnectionsPerEndpoint = this.MaxTcpConnectionsPerEndpoint
+                //EnableClientTelemetry = this.EnableTelemetry
             };
 
             if (!string.IsNullOrWhiteSpace(this.ConsistencyLevel))
